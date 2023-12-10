@@ -23,6 +23,7 @@ def extrapolate_diffs_reversed(line):
         first = line[0] - first
     return first
 
+
 def solve_part_1(puzzle_input):
     total = 0
     for line in puzzle_input:
@@ -36,15 +37,13 @@ def solve_part_2(puzzle_input):
         total += extrapolate_diffs_reversed(line)
     return total
 
+
 def get_puzzle_input():
     lines = []
-    with open("testinput.txt") as input_txt:
+    with open("input.txt") as input_txt:
         for line in input_txt:
             lines.append(list(map(int, line.split())))
     return lines
-
-
-
 
 
 if __name__ == "__main__":
