@@ -1,6 +1,6 @@
-def find_start(lns):
-    for i, ln in enumerate(lns):
-        for j, ch in enumerate(ln):
+def find_start(lines):
+    for i, line in enumerate(lines):
+        for j, ch in enumerate(line):
             if ch == 'S':
                 return i, j
 
