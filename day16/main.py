@@ -1,6 +1,5 @@
 import sys
 from enum import Enum
-from functools import cache
 
 
 class Direction(Enum):
@@ -8,9 +7,6 @@ class Direction(Enum):
     LEFT = 1,
     UP = 2,
     DOWN = 3
-
-
-DIRS = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
 
 def calculate_beam(puzzle_input, current_pos, direction, visited):
@@ -107,7 +103,7 @@ def solve_part_2(puzzle_input):
         count = count_energised(puzzle_input)
         max_count = max(count, max_count)
         reset_input(puzzle_input)
-        calculate_beam(puzzle_input, (len(puzzle_input)-1, col), Direction.UP, set())
+        calculate_beam(puzzle_input, (len(puzzle_input) - 1, col), Direction.UP, set())
         count = count_energised(puzzle_input)
         max_count = max(count, max_count)
         reset_input(puzzle_input)
@@ -117,13 +113,12 @@ def solve_part_2(puzzle_input):
         count = count_energised(puzzle_input)
         max_count = max(count, max_count)
         reset_input(puzzle_input)
-        calculate_beam(puzzle_input, (row, len(puzzle_input[0])-1), Direction.DOWN, set())
+        calculate_beam(puzzle_input, (row, len(puzzle_input[0]) - 1), Direction.DOWN, set())
         count = count_energised(puzzle_input)
         max_count = max(count, max_count)
         reset_input(puzzle_input)
 
     return max_count
-
 
 
 def get_puzzle_input():
