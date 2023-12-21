@@ -21,11 +21,11 @@ def is_part_accepted(rules, part):
 
 def find_combinations(workflows):
     todo = [("in", {c: [0, 4001] for c in "xmas"})]
-    total_comnibations = 0
+    total_combinations = 0
     while todo:
         workflow, part = todo.pop()
         if workflow == "A":
-            total_comnibations += math.prod(hi - lo - 1 for lo, hi in part.values())
+            total_combinations += math.prod(hi - lo - 1 for lo, hi in part.values())
             continue
         elif workflow == "R":
             continue
@@ -34,27 +34,18 @@ def find_combinations(workflows):
             new_part = deepcopy(part)
             if op == ">":
                 new_min = max(part[var][0], val)
-                if new_min + 1 < part[var][1]:
+                if part[var][1] > new_min + 1:
                     new_part[var][0] = new_min
                     todo.append((action, new_part))
-                new_max = min(part[var][1], val + 1)
-                if new_max - 1 > part[var][0]:
-                    part[var][1] = new_max
-                else:
-                    break
-            elif op == "<":
+                    part[var][1] = val + 1
+            else:
                 new_max = min(part[var][1], val)
-                if new_max - 1 > part[var][0]:
+                if part[var][0] < new_max - 1:
                     new_part[var][1] = new_max
                     todo.append((action, new_part))
-                new_min = max(part[var][0], val - 1)
-                if new_min + 1 < part[var][1]:
-                    part[var][0] = new_min
-                else:
-                    break
-            else:
-                assert False
-    return total_comnibations
+                    part[var][0] = val - 1
+
+    return total_combinations
 
 
 def solve_part_1(puzzle_input):
